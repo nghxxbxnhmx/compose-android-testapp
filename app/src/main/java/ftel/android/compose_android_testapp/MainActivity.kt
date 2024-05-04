@@ -34,32 +34,33 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Kiểm tra và yêu cầu quyền truy cập vị trí nếu cần
-        checkLocationPermission()
 
-        // Thiết lập giao diện người dùng
+
         setContent {
-            MainView()
+
+            MaterialTheme {
+                MainView()
+                checkLocationPermission()
+            }
         }
     }
 
     private fun checkLocationPermission() {
-        if (!PermissionHelper.isPermissionGranted(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            )
-        ) {
-            PermissionHelper.showPermissionDialog(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                2002
-            ) { allow ->
-                // Xử lý khi người dùng cấp quyền
+        PermissionHelper.showPermissionDialog(
+            this,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            2002,
+            "Location Permission",
+            "This app requires access to your location to function properly."
+        ) { allow ->
+            if (allow) {
+                // Nếu người dùng cho phép, bạn có thể thực hiện các hành động cần thiết ở đây
+            } else {
+                // Nếu người dùng từ chối, bạn có thể xử lý theo cách mong muốn
             }
         }
     }
 }
-
 
 
 @Preview(

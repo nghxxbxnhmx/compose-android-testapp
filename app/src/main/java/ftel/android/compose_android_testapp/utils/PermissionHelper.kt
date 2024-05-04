@@ -11,6 +11,7 @@ object PermissionHelper {
     fun isPermissionGranted(context: Context, permission: String): Boolean {
         return PermissionChecker.checkSelfPermission(context, permission) == PermissionChecker.PERMISSION_GRANTED
     }
+
     fun requestPermission(activity: Activity, permission: String, permissionCode: Int) {
         ActivityCompat.requestPermissions(
             activity,
@@ -23,13 +24,20 @@ object PermissionHelper {
         activity: Activity,
         permission: String,
         permissionCode: Int,
+        title: String = "Permission Required",
+        message: String = "This app requires permission to function properly.",
         callback: (Boolean) -> Unit
     ) {
+        if (isPermissionGranted(activity, permission)) {
+            // Nếu quyền đã được cấp, gọi hàm callback với tham số true và kết thúc hàm
+            callback(true)
+            return
+        }
+
         AlertDialog.Builder(activity)
-            .setTitle("Location Permission")
-            .setMessage("PT Net needs access to your location to function properly.")
+            .setTitle(title)
+            .setMessage(message)
             .setPositiveButton("Allow") { dialogInterface: DialogInterface, i: Int ->
-                // Nếu người dùng chấp nhận, gọi hàm callback với tham số true
                 callback(true)
                 ActivityCompat.requestPermissions(
                     activity,
@@ -39,11 +47,10 @@ object PermissionHelper {
                 dialogInterface.dismiss()
             }
             .setNegativeButton("Deny") { dialogInterface: DialogInterface, i: Int ->
-                // Nếu người dùng từ chối, gọi hàm callback với tham số false
                 callback(false)
                 dialogInterface.dismiss()
             }
-            .setCancelable(false) // Prevent dismissing dialog by tapping outside of it
+            .setCancelable(false)
             .create()
             .show()
     }
