@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import androidx.core.content.res.ResourcesCompat.ThemeCompat
 import ftel.android.compose_android_testapp.activities.PingActivity
+import ftel.android.compose_android_testapp.activities.TracerouteActivity
 import ftel.android.compose_android_testapp.activities.WifiInfoActivity
 import ftel.android.compose_android_testapp.dto.ButtonInfoDTO
 import ftel.android.compose_android_testapp.utils.PermissionHelper
@@ -72,6 +73,7 @@ fun MainView() {
     val buttons = listOf(
         ButtonInfoDTO("Wifi Info", WifiInfoActivity::class.java, true),
         ButtonInfoDTO("Ping", PingActivity::class.java, true),
+        ButtonInfoDTO("Traceroute", TracerouteActivity::class.java, true),
     )
 
     LazyColumn(

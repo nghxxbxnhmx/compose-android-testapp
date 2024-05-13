@@ -80,7 +80,7 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.8.1")
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
 
-    implementation(files("D:/Workspace/ptnet-library/shared/build/outputs/aar/shared-release.aar"))
+    implementation(files("/Users/nguyenhuutuong/Desktop/Nghia's Folder/JavaWorkspace/PTNet Library/shared/build/outputs/aar/shared-debug.aar"))
 
     testImplementation(libs.junit)
 

@@ -37,7 +37,7 @@ class PingActivity : ComponentActivity() {
 )
 @Composable
 fun PingScreen() {
-    var txtHost by remember {
+    var txtHost: String by remember {
         mutableStateOf("facebook.com")
     }
     var lblResult by remember {

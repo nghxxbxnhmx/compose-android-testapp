@@ -30,7 +30,7 @@
         </activity>
         <activity android:name=".activities.PingActivity" />
         <activity android:name=".activities.WifiInfoActivity" />
-        <!--        <activity android:name=".activities.PingActivity" />-->
+                <activity android:name=".activities.TracerouteActivity" />
     </application>
 
 </manifest>
